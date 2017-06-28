@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity {
         final EditText cityStart = (EditText) findViewById(R.id.start_city);
         Button cityStartButton = (Button) findViewById(R.id.start_cityButton);
         city = String.valueOf(cityStart.getText());
-        anim = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
+        anim = AnimationUtils.loadAnimation(StartActivity.this, android.R.anim.fade_out);
 
 //
         cityStartButton.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +37,7 @@ public class StartActivity extends AppCompatActivity {
                 city = String.valueOf(cityStart.getText());
                 Intent myIntent = new Intent(StartActivity.this, MainActivity.class);
                 myIntent.putExtra("city", String.valueOf(city));
-                Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), android.R.anim.slide_in_left, android.R.anim.fade_out).toBundle();
+                Bundle bndlanimation = ActivityOptions.makeCustomAnimation(getApplicationContext(), android.R.anim.slide_in_left, android.R.anim.slide_in_left).toBundle();
                 startActivity(myIntent, bndlanimation);
 
             }

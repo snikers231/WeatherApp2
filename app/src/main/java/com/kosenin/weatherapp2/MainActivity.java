@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String cityName = intent.getStringExtra("city");
 
-        if (!cityName.isEmpty())
-        {
+        if (!cityName.isEmpty()) {
             //Sending request to OpenweatherMap using Retrofit and WeatherAPI request's constructor.
 
             Call<WeatherData> call = RetrofitBuilderHelper.weatherAPI.getWeatherToday(cityName, "ru", "metric", API_KEY);
@@ -63,73 +62,84 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
 
-                    //Retreiving data from OpenWeatherMap using Helpers and populating TextViews
+                    if (response.isSuccessful()) {
+                        //Retreiving data from OpenWeatherMap using Helpers and populating TextViews
 
-                    //Rounding the temperature
+                        //Rounding the temperature
 
-                    int temperatureRounded = (int) Math.round(response.body().getMain().getTemp());
-
-
-                    String temp = String.valueOf(temperatureRounded);
-                    String humidity = String.valueOf(response.body().getMain().getHumidity());
-                    String pressure = String.valueOf(response.body().getMain().getPressure());
-                    String weatherMain = String.valueOf(response.body().getWeather().get(0).getDescription());
-                    String windSpeed = String.valueOf(response.body().getWind().getSpeed());
-
-                    //Creating Image URL for Picasso
-                    String imageID = String.valueOf(response.body().getWeather().get(0).getIcon());
-                    String imageUrl = "http://openweathermap.org/img/w/" + imageID + ".png";
-                    //Receiving date from Server
-                    long milliseconds = response.body().getDt();
-                    Date d = new Date(milliseconds * 1000);
-                    SimpleDateFormat simpleData = new SimpleDateFormat("dd.MM.yyyy");
-                    String date = simpleData.format(d);
+                        int temperatureRounded = (int) Math.round(response.body().getMain().getTemp());
 
 
-                    String message = String.valueOf(response.message());
+                        String temp = String.valueOf(temperatureRounded);
+                        String humidity = String.valueOf(response.body().getMain().getHumidity());
+                        String pressure = String.valueOf(response.body().getMain().getPressure());
+                        String weatherMain = String.valueOf(response.body().getWeather().get(0).getDescription());
+                        String windSpeed = String.valueOf(response.body().getWind().getSpeed());
 
-                    //    TextView textview1 = (TextView) findViewById(R.id.buton);
-                    //     textview1.setText(message);
-
-
-                    TextView tempView = (TextView) findViewById(R.id.temp_today);
-                    tempView.setText(temp + "°C");
-
-                    TextView humView = (TextView) findViewById(R.id.humidity_today);
-                    humView.setText(humidity + "%");
-
-                    TextView presView = (TextView) findViewById(R.id.pressure_today);
-                    presView.setText(pressure + " мм.рт.ст.");
-
-                    TextView dateView = (TextView) findViewById(R.id.day_today);
-                    dateView.setText(date);
+                        //Creating Image URL for Picasso
+                        String imageID = String.valueOf(response.body().getWeather().get(0).getIcon());
+                        String imageUrl = "http://openweathermap.org/img/w/" + imageID + ".png";
+                        //Receiving date from Server
+                        long milliseconds = response.body().getDt();
+                        Date d = new Date(milliseconds * 1000);
+                        SimpleDateFormat simpleData = new SimpleDateFormat("dd.MM.yyyy");
+                        String date = simpleData.format(d);
 
 
-                    TextView descriptionView = (TextView) findViewById(R.id.description_today);
-                    descriptionView.setText(weatherMain);
+                        String message = String.valueOf(response.message());
 
-                    TextView windSpeedView = (TextView) findViewById(R.id.windSpeed_today);
-                    windSpeedView.setText(windSpeed + " м/c");
+                        //    TextView textview1 = (TextView) findViewById(R.id.buton);
+                        //     textview1.setText(message);
 
-                    ImageView weatherImage = (ImageView) findViewById(R.id.today_weather_picture);
-                    Picasso.with(MainActivity.this).load(imageUrl).into(weatherImage);
 
+                        TextView tempView = (TextView) findViewById(R.id.temp_today);
+                        tempView.setText(temp + "°C");
+
+                        TextView humView = (TextView) findViewById(R.id.humidity_today);
+                        humView.setText(humidity + "%");
+
+                        TextView presView = (TextView) findViewById(R.id.pressure_today);
+                        presView.setText(pressure + " мм.рт.ст.");
+
+                        TextView dateView = (TextView) findViewById(R.id.day_today);
+                        dateView.setText(date);
+
+
+                        TextView descriptionView = (TextView) findViewById(R.id.description_today);
+                        descriptionView.setText(weatherMain);
+
+                        TextView windSpeedView = (TextView) findViewById(R.id.windSpeed_today);
+                        windSpeedView.setText(windSpeed + " м/c");
+
+                        ImageView weatherImage = (ImageView) findViewById(R.id.today_weather_picture);
+                        Picasso.with(MainActivity.this).load(imageUrl).into(weatherImage);
+
+
+                    }
+
+                    //If response to the API is not successful
+                    else {
+
+                        Toast toast = Toast.makeText(MainActivity.this, "Проверь название города блеать!", Toast.LENGTH_LONG);
+                        toast.show();
+
+                    }
 
                 }
-
 
                 @Override
                 public void onFailure(Call<WeatherData> call, Throwable t) {
 
                 }
+
+                ;
+
+                //  }
             });
 
-            //  }
-
-        }
-
-        else {
-            Toast toast = Toast.makeText(this, "Введи город на предыдущем экране, блеать!",Toast.LENGTH_LONG);
+//If string with cityName is empty
+        } else {
+            Toast toast = Toast.makeText(this, "Введи город на предыдущем экране, блеать!", Toast.LENGTH_LONG);
             toast.show();
         }
 

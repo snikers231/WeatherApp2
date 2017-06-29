@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 */
 
         Intent intent = getIntent();
-        String cityName = intent.getStringExtra("city");
+        final String cityName = intent.getStringExtra("city");
 
         if (!cityName.isEmpty()) {
             //Sending request to OpenweatherMap using Retrofit and WeatherAPI request's constructor.
@@ -143,6 +145,18 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
 
+        // JUMPING TO FORECAST ACTIVITY
+
+        Button forecast5DaysButton = (Button)findViewById(R.id.forecast_5_days);
+        forecast5DaysButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent forecastIntent = new Intent(MainActivity.this, Forecast5Days.class);
+                forecastIntent.putExtra("cityName", cityName);
+                startActivity(forecastIntent);
+
+            }
+        });
 
     }
 }

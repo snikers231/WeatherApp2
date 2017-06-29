@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="8dp"
-    tools:context="com.bostonkoseninsandwiches.weatherapp.StartActivity">
+    tools:context="com.kosenin.weatherapp2.StartActivity">
 
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/start_city"
-        android:layout_weight="5"/>
+        android:layout_weight="5"
+        android:inputType="textNoSuggestions"/>
     <Button
         android:id="@+id/start_cityButton"
         android:layout_width="0dp"

@@ -1,39 +1,31 @@
 package com.kosenin.weatherapp2.Helpers;
 
-		import java.util.List;
+import java.util.List;
 
-		import com.google.gson.annotations.SerializedName;
-
-
+import com.google.gson.annotations.SerializedName;
 
 public class ListItem{
 
 	@SerializedName("dt")
 	private int dt;
 
-	@SerializedName("temp")
-	private Temp temp;
-
-	@SerializedName("snow")
-	private double snow;
-
-	@SerializedName("deg")
-	private int deg;
+	@SerializedName("dt_txt")
+	private String dtTxt;
 
 	@SerializedName("weather")
 	private List<WeatherItem> weather;
 
-	@SerializedName("humidity")
-	private int humidity;
-
-	@SerializedName("pressure")
-	private double pressure;
+	@SerializedName("main")
+	private Main main;
 
 	@SerializedName("clouds")
-	private int clouds;
+	private Clouds clouds;
 
-	@SerializedName("speed")
-	private double speed;
+	@SerializedName("sys")
+	private Sys sys;
+
+	@SerializedName("wind")
+	private Wind wind;
 
 	public void setDt(int dt){
 		this.dt = dt;
@@ -43,28 +35,12 @@ public class ListItem{
 		return dt;
 	}
 
-	public void setTemp(Temp temp){
-		this.temp = temp;
+	public void setDtTxt(String dtTxt){
+		this.dtTxt = dtTxt;
 	}
 
-	public Temp getTemp(){
-		return temp;
-	}
-
-	public void setSnow(double snow){
-		this.snow = snow;
-	}
-
-	public double getSnow(){
-		return snow;
-	}
-
-	public void setDeg(int deg){
-		this.deg = deg;
-	}
-
-	public int getDeg(){
-		return deg;
+	public String getDtTxt(){
+		return dtTxt;
 	}
 
 	public void setWeather(List<WeatherItem> weather){
@@ -75,37 +51,35 @@ public class ListItem{
 		return weather;
 	}
 
-	public void setHumidity(int humidity){
-		this.humidity = humidity;
+	public void setMain(Main main){
+		this.main = main;
 	}
 
-	public int getHumidity(){
-		return humidity;
+	public Main getMain(){
+		return main;
 	}
 
-	public void setPressure(double pressure){
-		this.pressure = pressure;
-	}
-
-	public double getPressure(){
-		return pressure;
-	}
-
-	public void setClouds(int clouds){
+	public void setClouds(Clouds clouds){
 		this.clouds = clouds;
 	}
 
-	public int getClouds(){
+	public Clouds getClouds(){
 		return clouds;
 	}
 
-	public void setSpeed(double speed){
-		this.speed = speed;
+	public void setSys(Sys sys){
+		this.sys = sys;
 	}
 
-	public double getSpeed(){
-		return speed;
+	public Sys getSys(){
+		return sys;
 	}
 
+	public void setWind(Wind wind){
+		this.wind = wind;
+	}
 
+	public Wind getWind(){
+		return wind;
+	}
 }

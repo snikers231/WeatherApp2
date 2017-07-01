@@ -1,143 +1,195 @@
-
 package com.kosenin.weatherapp2.Helpers;
 
+import android.content.Intent;
+
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class WeatherData {
 
-    @SerializedName("coord")
-    @Expose
-    private Coord coord;
-    @SerializedName("weather")
-    @Expose
-    private List<Weather> weather = null;
-    @SerializedName("base")
-    @Expose
-    private String base;
-    @SerializedName("main")
-    @Expose
-    private Main main;
-    @SerializedName("visibility")
-    @Expose
-    private Integer visibility;
-    @SerializedName("wind")
-    @Expose
-    private Wind wind;
-    @SerializedName("clouds")
-    @Expose
-    private Clouds clouds;
-    @SerializedName("dt")
-    @Expose
-    private Long dt;
-    @SerializedName("sys")
-    @Expose
-    private Sys sys;
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("cod")
-    @Expose
-    private Integer cod;
+public class WeatherData{
+	@SerializedName("coord")
+	@Expose
+	private Coord coord;
+	@SerializedName("weather")
+	@Expose
+	private List<Weather> weather = null;
+	@SerializedName("base")
+	@Expose
+	private String base;
+	@SerializedName("main")
+	@Expose
+	private Main main;
+	@SerializedName("visibility")
+	@Expose
+	private Integer visibility;
+	@SerializedName("wind")
+	@Expose
+	private Wind wind;
+	@SerializedName("clouds")
+	@Expose
+	private Clouds clouds;
+	@SerializedName("dt")
+	@Expose
+	private Long dt;
+	@SerializedName("sys")
+	@Expose
+	private Sys sys;
+	@SerializedName("id")
+	@Expose
+	private Integer id;
+	@SerializedName("name")
+	@Expose
+	private String name;
 
-    public Coord getCoord() {
-        return coord;
-    }
+	@SerializedName("city")
+	private City city;
 
-    public void setCoord(Coord coord) {
-        this.coord = coord;
-    }
+	@SerializedName("cnt")
+	private int cnt;
 
-    public List<Weather> getWeather() {
-        return weather;
-    }
 
-    public void setWeather(List<Weather> weather) {
-        this.weather = weather;
-    }
+	@SerializedName("message")
+	private double message;
 
-    public String getBase() {
-        return base;
-    }
+	@SerializedName("list")
+	private List<ListItem> list;
 
-    public void setBase(String base) {
-        this.base = base;
-    }
+	@SerializedName("cod")
+	@Expose
+	private Integer cod;
 
-    public Main getMain() {
-        return main;
-    }
+	public void setCity(City city){
+		this.city = city;
+	}
 
-    public void setMain(Main main) {
-        this.main = main;
-    }
+	public City getCity(){
+		return city;
+	}
 
-    public Integer getVisibility() {
-        return visibility;
-    }
+	public void setCnt(int cnt){
+		this.cnt = cnt;
+	}
 
-    public void setVisibility(Integer visibility) {
-        this.visibility = visibility;
-    }
+	public int getCnt(){
+		return cnt;
+	}
 
-    public Wind getWind() {
-        return wind;
-    }
 
-    public void setWind(Wind wind) {
-        this.wind = wind;
-    }
 
-    public Clouds getClouds() {
-        return clouds;
-    }
+	public void setMessage(double message){
+		this.message = message;
+	}
 
-    public void setClouds(Clouds clouds) {
-        this.clouds = clouds;
-    }
+	public double getMessage(){
+		return message;
+	}
 
-    public Long getDt() {
-        return dt;
-    }
+	public void setList(List<ListItem> list){
+		this.list = list;
+	}
 
-    public void setDt(Long dt) {
-        this.dt = dt;
-    }
+	public List<ListItem> getList(){
+		return list;
+	}
 
-    public Sys getSys() {
-        return sys;
-    }
 
-    public void setSys(Sys sys) {
-        this.sys = sys;
-    }
 
-    public Integer getId() {
-        return id;
-    }
+	public Coord getCoord() {
+		return coord;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setCoord(Coord coord) {
+		this.coord = coord;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public List<Weather> getWeather() {
+		return weather;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setWeather(List<Weather> weather) {
+		this.weather = weather;
+	}
 
-    public Integer getCod() {
-        return cod;
-    }
+	public String getBase() {
+		return base;
+	}
 
-    public void setCod(Integer cod) {
-        this.cod = cod;
-    }
+	public void setBase(String base) {
+		this.base = base;
+	}
+
+	public Main getMain() {
+		return main;
+	}
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+
+	public Integer getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(Integer visibility) {
+		this.visibility = visibility;
+	}
+
+	public Wind getWind() {
+		return wind;
+	}
+
+	public void setWind(Wind wind) {
+		this.wind = wind;
+	}
+
+	public Clouds getClouds() {
+		return clouds;
+	}
+
+	public void setClouds(Clouds clouds) {
+		this.clouds = clouds;
+	}
+
+	public Long getDt() {
+		return dt;
+	}
+
+	public void setDt(Long dt) {
+		this.dt = dt;
+	}
+
+	public Sys getSys() {
+		return sys;
+	}
+
+	public void setSys(Sys sys) {
+		this.sys = sys;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getCod() {
+		return cod;
+	}
+
+	public void setCod(Integer cod) {
+		this.cod = cod;
+	}
 
 }

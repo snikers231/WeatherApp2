@@ -9,11 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kosenin.weatherapp2.Helpers.ListItem;
 import com.kosenin.weatherapp2.Helpers.Weather;
 import com.kosenin.weatherapp2.Helpers.WeatherData;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.media.CamcorderProfile.get;
@@ -25,8 +28,7 @@ import static android.media.CamcorderProfile.get;
 public class Forecast5DaysAdapter extends RecyclerView.Adapter<Forecast5DaysAdapter.ForecastHolder> {
 
 
-    private Context mContext;
-    List<WeatherData> mWeatherDataList;
+    List<ListItem> listItemList;
 
 
     public static class ForecastHolder extends RecyclerView.ViewHolder {
@@ -48,9 +50,9 @@ public class Forecast5DaysAdapter extends RecyclerView.Adapter<Forecast5DaysAdap
         }
     }
 
-    public Forecast5DaysAdapter(List<WeatherData> mWeatherDataList) {
+    public Forecast5DaysAdapter(List<ListItem> listItemList) {
 
-        this.mWeatherDataList = mWeatherDataList;
+        this.listItemList = listItemList;
     }
 
     @Override
@@ -69,16 +71,23 @@ public class Forecast5DaysAdapter extends RecyclerView.Adapter<Forecast5DaysAdap
 
         //FILLING THE CARDS IN RECYCLERVIEW WITH INFORMATION
 
-        holder.dateOnDate.setText(mWeatherDataList.get(position).getDt().toString());
-        holder.tempOnDate.setText(mWeatherDataList.get(position).getMain().getTemp().toString());
-        holder.windSpeedOnDate.setText(mWeatherDataList.get(position).getWind().getSpeed().toString());
-        Picasso.with(holder.weatherOnDate.getContext()).load("http://openweathermap.org/img/w/" + mWeatherDataList.get(position).getWeather().get(position).getIcon() + ".png").into(holder.weatherOnDate);
+        long milliseconds = listItemList.get(position).getDt();
+        Date d = new Date(milliseconds * 1000);
+        SimpleDateFormat simpleData = new SimpleDateFormat("dd.MM.yyyy");
+        String date = simpleData.format(d);
+
+
+        holder.dateOnDate.setText(String.valueOf(date));
+        holder.tempOnDate.setText(String.valueOf(listItemList.get(position).getMain().getTemp()));
+        holder.windSpeedOnDate.setText(String.valueOf(listItemList.get(position).getWind().getSpeed()));
+        Picasso.with(holder.weatherOnDate.getContext()).load("http://openweathermap.org/img/w/" + listItemList.get(position).getWeather().get(0).getIcon() + ".png").into(holder.weatherOnDate);
+
 
     }
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listItemList.size();
     }
 }

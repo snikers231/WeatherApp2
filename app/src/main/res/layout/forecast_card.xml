@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="8dp">
 
 
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:id="@+id/forecast_5_daysCard">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
+    <android.support.v7.widget.CardView
+        android:id="@+id/forecast_5_daysCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/dateOnDate"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/imageOnDate"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageOnDate"
-        android:layout_alignParentLeft="true"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tempOnDate"
-        android:layout_below="@+id/dateOnDate"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/imageOnDate"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/windSpeedOnDate"
-        android:layout_below="@+id/tempOnDate"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/imageOnDate"/>
+        android:padding="8dp">
 
-</RelativeLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/imageOnDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/dateOnDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tempOnDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/windSpeedOnDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+        </TableLayout>
 
 
-</android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

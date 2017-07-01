@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kosenin.weatherapp2.Helpers.ListItem;
 import com.kosenin.weatherapp2.Helpers.Weather;
 import com.kosenin.weatherapp2.Helpers.WeatherData;
 
@@ -25,7 +27,7 @@ public class Forecast5Days extends AppCompatActivity {
     private static final String API_KEY = "be7dee010e120a3af05f191d88798bde";
 
     private RecyclerView forecastRecycler;
-    private ArrayList<WeatherData> mWeatherData;
+    private List<WeatherData> mWeatherData;
     private Forecast5DaysAdapter forecast5DaysAdapter;
 
 
@@ -35,8 +37,11 @@ public class Forecast5Days extends AppCompatActivity {
         setContentView(R.layout.activity_forecast_5_days);
 
         forecastRecycler = (RecyclerView) findViewById(R.id.forecast_5_daysRecycler);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         forecastRecycler.setLayoutManager(layoutManager);
+        forecastRecycler.setAdapter(forecast5DaysAdapter);
+
+
 
 
         Intent intent = getIntent();
@@ -48,10 +53,15 @@ public class Forecast5Days extends AppCompatActivity {
             call.enqueue(new Callback<WeatherData>() {
                 @Override
                 public void onResponse(Call<WeatherData> call, Response<WeatherData> response) {
-                    mWeatherData = new ArrayList<>(Arrays.asList(response.body()));
-                    Forecast5DaysAdapter forecast5DaysAdapter = new Forecast5DaysAdapter(mWeatherData);
+                   WeatherData data = response.body();
+
+                    List<ListItem> weatherList = data.getList();
+
+                    Forecast5DaysAdapter forecast5DaysAdapter = new Forecast5DaysAdapter(weatherList);
                     forecastRecycler.setAdapter(forecast5DaysAdapter);
-                    forecastRecycler.setHasFixedSize(true);
+
+                  //  TextView textview = (TextView) findViewById(R.id.message);
+                  //  textview.setText(response.message());
                 }
 
                 @Override

@@ -1,21 +1,19 @@
-
 package com.kosenin.weatherapp2.Helpers;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Clouds {
 
-    @SerializedName("all")
-    @Expose
-    private Integer all;
+public class Clouds{
 
-    public Integer getAll() {
-        return all;
-    }
+	@SerializedName("all")
+	private int all;
 
-    public void setAll(Integer all) {
-        this.all = all;
-    }
+	public void setAll(int all){
+		this.all = all;
+	}
 
+	public int getAll(){
+		return all;
+	}
 }

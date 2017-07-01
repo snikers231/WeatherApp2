@@ -1,65 +1,95 @@
-
 package com.kosenin.weatherapp2.Helpers;
 
-import com.google.gson.annotations.Expose;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Main {
+public class Main{
 
-    @SerializedName("temp")
-    @Expose
-    private Double temp;
-    @SerializedName("pressure")
-    @Expose
-    private Integer pressure;
-    @SerializedName("humidity")
-    @Expose
-    private Integer humidity;
-    @SerializedName("temp_min")
-    @Expose
-    private Double tempMin;
-    @SerializedName("temp_max")
-    @Expose
-    private Double tempMax;
+	@SerializedName("temp")
+	private double temp;
 
-    public Double getTemp() {
-        return temp;
-    }
+	@SerializedName("temp_min")
+	private double tempMin;
 
-    public void setTemp(Double temp) {
-        this.temp = temp;
-    }
+	@SerializedName("grnd_level")
+	private double grndLevel;
 
-    public Integer getPressure() {
-        return pressure;
-    }
+	@SerializedName("temp_kf")
+	private double tempKf;
 
-    public void setPressure(Integer pressure) {
-        this.pressure = pressure;
-    }
+	@SerializedName("humidity")
+	private int humidity;
 
-    public Integer getHumidity() {
-        return humidity;
-    }
+	@SerializedName("pressure")
+	private double pressure;
 
-    public void setHumidity(Integer humidity) {
-        this.humidity = humidity;
-    }
+	@SerializedName("sea_level")
+	private double seaLevel;
 
-    public Double getTempMin() {
-        return tempMin;
-    }
+	@SerializedName("temp_max")
+	private double tempMax;
 
-    public void setTempMin(Double tempMin) {
-        this.tempMin = tempMin;
-    }
+	public void setTemp(double temp){
+		this.temp = temp;
+	}
 
-    public Double getTempMax() {
-        return tempMax;
-    }
+	public double getTemp(){
+		return temp;
+	}
 
-    public void setTempMax(Double tempMax) {
-        this.tempMax = tempMax;
-    }
+	public void setTempMin(double tempMin){
+		this.tempMin = tempMin;
+	}
 
+	public double getTempMin(){
+		return tempMin;
+	}
+
+	public void setGrndLevel(double grndLevel){
+		this.grndLevel = grndLevel;
+	}
+
+	public double getGrndLevel(){
+		return grndLevel;
+	}
+
+	public void setTempKf(double tempKf){
+		this.tempKf = tempKf;
+	}
+
+	public double getTempKf(){
+		return tempKf;
+	}
+
+	public void setHumidity(int humidity){
+		this.humidity = humidity;
+	}
+
+	public int getHumidity(){
+		return humidity;
+	}
+
+	public void setPressure(double pressure){
+		this.pressure = pressure;
+	}
+
+	public double getPressure(){
+		return pressure;
+	}
+
+	public void setSeaLevel(double seaLevel){
+		this.seaLevel = seaLevel;
+	}
+
+	public double getSeaLevel(){
+		return seaLevel;
+	}
+
+	public void setTempMax(double tempMax){
+		this.tempMax = tempMax;
+	}
+
+	public double getTempMax(){
+		return tempMax;
+	}
 }

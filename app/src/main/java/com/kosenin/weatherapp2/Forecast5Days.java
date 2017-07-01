@@ -24,7 +24,7 @@ import static android.R.attr.data;
 
 public class Forecast5Days extends AppCompatActivity {
 
-    private static final String API_KEY = "be7dee010e120a3af05f191d88798bde";
+    private static final String API_KEY = "5deb6d7ace45ba7eeb7516151d25ab2c";
 
     private RecyclerView forecastRecycler;
     private List<WeatherData> mWeatherData;

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.kosenin.weatherapp2.Helpers.ListItem;
 import com.kosenin.weatherapp2.Helpers.Weather;
 import com.kosenin.weatherapp2.Helpers.WeatherData;
@@ -20,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 import static android.media.CamcorderProfile.get;
+import static java.lang.System.load;
 
 /**
  * Created by Konstantin2 on 29.06.2017.
@@ -73,14 +76,18 @@ public class Forecast5DaysAdapter extends RecyclerView.Adapter<Forecast5DaysAdap
 
         long milliseconds = listItemList.get(position).getDt();
         Date d = new Date(milliseconds * 1000);
-        SimpleDateFormat simpleData = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat simpleData = new SimpleDateFormat("dd.MM.yyyy kk:mm ");
         String date = simpleData.format(d);
+
+        int temperatureRounded = (int) Math.round(listItemList.get(position).getMain().getTemp());
+        String temp = String.valueOf(temperatureRounded);
+        int windRounded = (int) Math.round(listItemList.get(position).getWind().getSpeed());
 
 
         holder.dateOnDate.setText(String.valueOf(date));
-        holder.tempOnDate.setText(String.valueOf(listItemList.get(position).getMain().getTemp()));
-        holder.windSpeedOnDate.setText(String.valueOf(listItemList.get(position).getWind().getSpeed()));
-        Picasso.with(holder.weatherOnDate.getContext()).load("http://openweathermap.org/img/w/" + listItemList.get(position).getWeather().get(0).getIcon() + ".png").into(holder.weatherOnDate);
+        holder.tempOnDate.setText(String.valueOf(temp) + "°C");
+        holder.windSpeedOnDate.setText(String.valueOf(windRounded + " м/с"));
+        Glide.with(holder.weatherOnDate.getContext()).load("http://openweathermap.org/img/w/" + listItemList.get(position).getWeather().get(0).getIcon() + ".png").fitCenter().into(holder.weatherOnDate);
 
 
     }

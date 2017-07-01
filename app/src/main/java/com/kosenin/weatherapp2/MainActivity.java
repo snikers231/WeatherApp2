@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.kosenin.weatherapp2.Helpers.WeatherData;
 import com.squareup.picasso.Picasso;
 
@@ -19,6 +20,9 @@ import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.lang.System.load;
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -114,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         windSpeedView.setText(windSpeed + " м/c");
 
                         ImageView weatherImage = (ImageView) findViewById(R.id.today_weather_picture);
-                        Picasso.with(MainActivity.this).load(imageUrl).into(weatherImage);
+                        Glide.with(weatherImage.getContext()).load(imageUrl).into(weatherImage);
 
 
                     }
